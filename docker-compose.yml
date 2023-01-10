@@ -1,0 +1,75 @@
+version: '3.2'
+
+services:
+  # etcd
+  etcd:
+    image: "bitnami/etcd:${KVBENCHMARK_ETCD_SERVER_VERSION:-latest}"
+    environment:
+      - ALLOW_NONE_AUTHENTICATION=yes
+      - ETCD_ADVERTISE_CLIENT_URLS=http://etcd:2379
+      - ETCD_ELECTION_TIMEOUT=600
+    ports:
+      - 2379:2379
+      - 2380:2380
+  # memcached
+  memcached-1:
+    image: "memcached:${KVBENCHMARK_MEMCACHED_SERVER_VERSION:-latest}"
+    command: -p 22122
+    ports:
+      - 22122:22122
+  # cluster
+  redis-cluster-1:
+    image: "redis:${KVBENCHMARK_REDIS_SERVER_VERSION:-latest}"
+    command: redis-server --port 7001 --protected-mode no --cluster-enabled yes --loglevel verbose --cluster-announce-ip ${HOST_IP}
+    ports:
+      - '7001:7001'
+      - '17001:17001'
+  redis-cluster-2:
+    image: "redis:${KVBENCHMARK_REDIS_SERVER_VERSION:-latest}"
+    command: redis-server --port 7002 --protected-mode no --cluster-enabled yes --loglevel verbose --cluster-announce-ip ${HOST_IP}
+    ports:
+      - '7002:7002'
+      - '17002:17002'
+  redis-cluster-3:
+    image: "redis:${KVBENCHMARK_REDIS_SERVER_VERSION:-latest}"
+    command: redis-server --port 7003 --protected-mode no --cluster-enabled yes --loglevel verbose --cluster-announce-ip ${HOST_IP}
+    ports:
+      - '7003:7003'
+      - '17003:17003'
+  redis-cluster-4:
+    image: "redis:${KVBENCHMARK_REDIS_SERVER_VERSION:-latest}"
+    command: redis-server --port 7004 --protected-mode no --cluster-enabled yes --loglevel verbose --cluster-announce-ip ${HOST_IP}
+    ports:
+      - '7004:7004'
+      - '17004:17004'
+  redis-cluster-5:
+    image: "redis:${KVBENCHMARK_REDIS_SERVER_VERSION:-latest}"
+    command: redis-server --port 7005 --protected-mode no --cluster-enabled yes --loglevel verbose --cluster-announce-ip ${HOST_IP}
+    ports:
+      - '7005:7005'
+      - '17005:17005'
+  redis-cluster-6:
+    image: "redis:${KVBENCHMARK_REDIS_SERVER_VERSION:-latest}"
+    command: redis-server --port 7006 --protected-mode no --cluster-enabled yes --loglevel verbose --cluster-announce-ip ${HOST_IP}
+    ports:
+      - '7006:7006'
+      - '17006:17006'
+  redis-cluster-init:
+    image: "redis:${KVBENCHMARK_REDIS_SERVER_VERSION:-latest}"
+    command: bash -c "echo yes | redis-cli --cluster create --cluster-replicas 1 ${HOST_IP}:7001 ${HOST_IP}:7002 ${HOST_IP}:7003 ${HOST_IP}:7004 ${HOST_IP}:7005 ${HOST_IP}:7006"
+    depends_on: [redis-cluster-1, redis-cluster-2, redis-cluster-3, redis-cluster-4, redis-cluster-5, redis-cluster-6]
+  redis:
+    image: "redis:${KVBENCHMARK_REDIS_SERVER_VERSION:-latest}"
+    command: redis-server --port 7379
+    ports:
+      - '7379:7379'
+  mongodb:
+    image: "mongo:${KVBENCHMARK_MONGODB_SERVER_VERSION:-latest}"
+    ports:
+      - '37017:27017'
+  dragonfly:
+    image: "docker.dragonflydb.io/dragonflydb/dragonfly:latest"
+    ports:
+      - '10379:6379'
+    ulimits:
+      memlock: -1

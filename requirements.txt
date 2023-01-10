@@ -1,0 +1,15 @@
+redis
+pymemcache
+pymongo
+etcd3
+
+lovely-pytest-docker
+pytest
+pytest-benchmark[histogram]
+pytest-lazy-fixture
+
+
+autoflake8
+black
+isort
+
