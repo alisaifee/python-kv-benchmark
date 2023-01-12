@@ -25,7 +25,7 @@ The benchmarks were run using [pytest-benchmark](https://pytest-benchmark.readth
 - MongoDB: [pymongo](https://github.com/mongodb/mongo-python-driver)
 - Etcd: [etcd3](https://github.com/kragniz/python-etcd3)
 
-The associated wrappers used in the benchmark can be found in [kv_benchmark.py](./kv_benchmark.py)
+The associated implementations used in the benchmark can be found in [kv_benchmark.py](./kv_benchmark.py)
 
 ## Operations
 
