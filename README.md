@@ -20,7 +20,7 @@ The benchmarks were run using [pytest-benchmark](https://pytest-benchmark.readth
 
 
 ## Python client libraries used:
-- Redis: [redis-py](https://github.com/redis/redis-py)
+- Redis/Redis Cluster/Dragonfly: [redis-py](https://github.com/redis/redis-py)
 - Memcached: [pymemcache](https://github.com/pinterest/pymemcache)
 - MongoDB: [pymongo](https://github.com/mongodb/mongo-python-driver)
 - Etcd: [etcd3](https://github.com/kragniz/python-etcd3)
@@ -30,7 +30,7 @@ The associated wrappers used in the benchmark can be found in [kv_benchmark.py](
 ## Operations
 
 ### Get
-- Redis: [GET](https://redis.io/commands/get/)
+- Redis/Redis Cluster/Dragonfly: [GET](https://redis.io/commands/get/)
 - Memcached: [get](https://github.com/memcached/memcached/wiki/Commands#get)
 - MongoDB: [findOne](https://www.mongodb.com/docs/manual/reference/method/db.collection.findOne/)
 - Etcd: [get](https://python-etcd3.readthedocs.io/en/latest/usage.html#etcd3.Etcd3Client.get)
@@ -38,7 +38,7 @@ The associated wrappers used in the benchmark can be found in [kv_benchmark.py](
 ![get](./results/benchmark-get.svg)
 
 ### Set
-- Redis: [SET](https://redis.io/commands/set/)
+- Redis/Redis Cluster/Dragonfly: [SET](https://redis.io/commands/set/)
 - Memcached: [set](https://github.com/memcached/memcached/wiki/Commands#set)
 - MongoDB: [replaceOne with upsert](https://www.mongodb.com/docs/manual/reference/method/db.collection.replaceOne/)
 - Etcd: [put](https://python-etcd3.readthedocs.io/en/latest/usage.html#etcd3.Etcd3Client.put)
@@ -46,7 +46,7 @@ The associated wrappers used in the benchmark can be found in [kv_benchmark.py](
 ![set](./results/benchmark-set.svg)
 
 ### Increment
-- Redis: [INCRBY](https://redis.io/commands/incrby/)
+- Redis/Redis Cluster/Dragonfly: [INCRBY](https://redis.io/commands/incrby/)
 - Memcached: [incr](https://github.com/memcached/memcached/wiki/Commands#incrdecr)
 - MongoDB: [findOneAndUpdate with conditional $add and upsert](https://www.mongodb.com/docs/manual/reference/method/db.collection.findOneAndUpdate/)
 - Etcd: [transaction with conditional put when key doesn't exist and get+local increment+put with another transaction with a CAS (in a loop) if it does](https://python-etcd3.readthedocs.io/en/latest/usage.html#etcd3.Etcd3Client.transactionhttps://python-etcd3.readthedocs.io/en/latest/usage.html#etcd3.Etcd3Client.transactionhttps://python-etcd3.readthedocs.io/en/latest/usage.html#etcd3.Etcd3Client.transactionhttps://python-etcd3.readthedocs.io/en/latest/usage.html#etcd3.Etcd3Client.transactionhttps://python-etcd3.readthedocs.io/en/latest/usage.html#etcd3.Etcd3Client.transactionhttps://python-etcd3.readthedocs.io/en/latest/usage.html#etcd3.Etcd3Client.transactionhttps://python-etcd3.readthedocs.io/en/latest/usage.html#etcd3.Etcd3Client.transactionhttps://python-etcd3.readthedocs.io/en/latest/usage.html#etcd3.Etcd3Client.transactionhttps://python-etcd3.readthedocs.io/en/latest/usage.html#etcd3.Etcd3Client.transaction)
