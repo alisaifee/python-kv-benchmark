@@ -10,6 +10,6 @@ lint-fix:
 generate:
 	rm -rf .benchmarks results
 	mkdir -p results
-	pytest --benchmark-save=kv --benchmark-histogram=results/benchmark
+	pytest --benchmark-warmup=on --benchmark-save=kv --benchmark-histogram=results/benchmark
 	pytest-benchmark compare 0001 --columns="min,max,mean,rounds,ops" > results/table.txt
 	python build_readme.py
