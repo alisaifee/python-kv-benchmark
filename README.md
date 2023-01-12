@@ -19,13 +19,15 @@ Benchmarks for some common operations with Memcached, Redis, Redis Cluster, Drag
 
 The associated wrappers used in the benchmark can be found in [kv_benchmark.py](./kv_benchmark.py)
 
-## Get
+## Operations 
+
+### Get
 ![get](./results/benchmark-get.svg)
 
-## Set
+### Set
 ![set](./results/benchmark-set.svg)
 
-## Increment
+### Increment
 ![incr](./results/benchmark-incr.svg)
 
 ## Tabulated Results

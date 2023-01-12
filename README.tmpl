@@ -2,10 +2,10 @@
 
 Benchmarks for some common operations with Memcached, Redis, Redis Cluster, Dragonfly, MongoDB and Etcd.
 
-Server versions:
+## Server versions:
 {VERSIONS}
 
-Python client libraries used:
+## Python client libraries used:
 - Redis: [redis-py](https://github.com/redis/redis-py)
 - Memcached: [pymemcache](https://github.com/pinterest/pymemcache)
 - MongoDB: [pymongo](https://github.com/mongodb/mongo-python-driver)
@@ -13,13 +13,15 @@ Python client libraries used:
 
 The associated wrappers used in the benchmark can be found in [kv_benchmark.py](./kv_benchmark.py)
 
-## Get
+## Operations
+
+### Get
 ![get](./results/benchmark-get.svg)
 
-## Set
+### Set
 ![set](./results/benchmark-set.svg)
 
-## Increment
+### Increment
 ![incr](./results/benchmark-incr.svg)
 
 ## Tabulated Results
