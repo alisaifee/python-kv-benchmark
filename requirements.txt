@@ -13,3 +13,4 @@ autoflake8
 black
 isort
 
+psutil
