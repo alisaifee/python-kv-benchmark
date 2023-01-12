@@ -2,7 +2,7 @@
 
 Benchmarks for some common operations with Memcached, Redis, Redis Cluster, Dragonfly, MongoDB and Etcd.
 
-Server versions:
+## Server versions
 - Redis: 7.0.7
 - Dragonfly: df-v0.13.1
 - Memcached: 1.6.18
@@ -11,7 +11,7 @@ Server versions:
 - Etcd: 3.5.6
 
 
-Python client libraries used:
+## Python client libraries used
 - Redis: [redis-py](https://github.com/redis/redis-py)
 - Memcached: [pymemcache](https://github.com/pinterest/pymemcache)
 - MongoDB: [pymongo](https://github.com/mongodb/mongo-python-driver)
