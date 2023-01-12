@@ -67,6 +67,10 @@ services:
     image: "mongo:${MONGODB_VERSION:-latest}"
     ports:
       - '37017:27017'
+  keydb:
+    image: "eqalpha/keydb"
+    ports:
+      - '11379:6379'
   dragonfly:
     image: "docker.dragonflydb.io/dragonflydb/dragonfly:${DRAGONFLY_VERSION:-latest}"
     ports:

@@ -43,6 +43,7 @@ def versions_string():
     servers = {
         "Redis": kv_benchmark.Redis(redis.Redis(port=7379)),
         "Dragonfly": kv_benchmark.Redis(redis.Redis(port=10379)),
+        "KeyDB": kv_benchmark.Redis(redis.Redis(port=11379)),
         "Memcached": kv_benchmark.Memcached(pymemcache.Client(("localhost", 22122))),
         "Redis Cluster": kv_benchmark.Redis(
             redis.cluster.RedisCluster("localhost", 7001)

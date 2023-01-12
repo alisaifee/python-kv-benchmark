@@ -33,5 +33,10 @@ all_storage = pytest.mark.parametrize(
             marks=pytest.mark.dragonfly,
             id="dragonfly",
         ),
+        pytest.param(
+            pytest.lazy_fixture("keydb"),
+            marks=pytest.mark.keydb,
+            id="keydb",
+        ),
     ],
 )

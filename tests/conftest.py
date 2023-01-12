@@ -79,6 +79,12 @@ def dragonfly_client(docker_services):
     time.sleep(5)
     return r.StrictRedis("localhost", 10379)
 
+@pytest.fixture(scope="session")
+def keydb_client(docker_services):
+    docker_services.start("keydb")
+    time.sleep(5)
+    return r.StrictRedis("localhost", 11379)
+
 
 @pytest.fixture(scope="session")
 def redis_cluster_client(docker_services):
@@ -124,6 +130,13 @@ def dragonfly(dragonfly_client):
     dragonfly_client.set("fubar", 1)
 
     return kv_benchmark.Redis(dragonfly_client)
+
+@pytest.fixture
+def keydb(keydb_client):
+    keydb_client.flushall()
+    keydb_client.set("fubar", 1)
+
+    return kv_benchmark.Redis(keydb_client)
 
 
 @pytest.fixture
