@@ -17,6 +17,14 @@ class Store(metaclass=abc.ABCMeta):
     def set(self, key: str, value: str) -> None:
         ...
 
+    @abc.abstractmethod
+    def incr(self, key: str) -> int:
+        ...
+
+    @abc.abstractmethod
+    def version(self) -> str:
+        ...
+
 
 class Redis(Store):
     def __init__(self, client: redis.Redis) -> None:
@@ -31,6 +39,9 @@ class Redis(Store):
     def incr(self, key: str) -> int:
         return self.client.incrby(key, 1)
 
+    def version(self) -> str:
+        return self.client.info()["redis_version"]
+
 
 class Memcached(Store):
     def __init__(self, client: pymemcache.client.Client) -> None:
@@ -44,6 +55,9 @@ class Memcached(Store):
 
     def incr(self, key: str) -> int:
         return self.client.incr(key, 1)
+
+    def version(self) -> str:
+        return self.client.stats()[b"version"].decode("utf-8")
 
 
 class Etcd(Store):
@@ -80,6 +94,9 @@ class Etcd(Store):
                 cur_value = create_result[1][0][0][0]
 
             return int(cur_value) + 1
+
+    def version(self) -> str:
+        return self.client.status().version
 
 
 class Mongo(Store):
@@ -119,3 +136,6 @@ class Mongo(Store):
             projection=["value"],
             return_document=pymongo.ReturnDocument.AFTER,
         )["value"]
+
+    def version(self) -> str:
+        return self.client.server_info()["version"]

@@ -1,11 +1,11 @@
 lint:
-	black --check kv_benchmark tests 
-	flake8 kv_benchmark tests
+	black --check kv_benchmark.py build_readme.py tests
+	flake8 kv_benchmark.py tests build_readme.py
 
 lint-fix:
-	black tests kv_benchmark
-	isort --profile=black tests kv_benchmark
-	autoflake8 -i -r tests kv_benchmark
+	black tests kv_benchmark.py build_readme.py
+	isort --profile=black tests kv_benchmark.py build_readme.py
+	autoflake8 -i -r tests kv_benchmark.py build_readme.py
 
 generate:
 	rm -rf .benchmarks results
