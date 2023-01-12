@@ -95,3 +95,12 @@ Legend:
   OPS: Operations Per Second, computed as 1 / Mean
 
 ```
+
+
+## Development
+
+To run these benchmarks locally you'll need a working docker & docker-compose installation.
+
+1. Install the requirements: `pip install --no-binary=protobuf requirements.txt`
+2. Run the benchmarks: `make generate` (this task will also update the report in this README)
+3. Or, run the benchmarks directly: `pytest`
