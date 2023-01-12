@@ -2,6 +2,14 @@
 
 Benchmarks for some common operations with Memcached, Redis, Redis Cluster, Dragonfly, MongoDB and Etcd.
 
+The benchmarks were run using [pytest-benchmark](https://pytest-benchmark.readthedocs.io/en/latest/) with the parameters:
+- min_rounds=5
+- min_time=0.000005
+- max_time=1.0
+- calibration_precision=10
+- warmup=True
+- warmup_iterations=100000
+
 ## Server versions:
 {VERSIONS}
 
