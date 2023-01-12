@@ -1,4 +1,4 @@
-# Python Key Value Store benchmarks
+# Key Value Store benchmarks with python client libraries
 
 ## Get
 ![get](./results/benchmark-get.svg)

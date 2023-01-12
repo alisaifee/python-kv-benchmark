@@ -1,4 +1,14 @@
-# Python Key Value Store benchmarks
+# Key Value Store benchmarks with python client libraries
+
+Benchmarks for some common operations with Memcached, Redis, Redis Cluster, MongoDB and Etcd.
+
+Python client libraries used:
+- Redis: [redis-py](https://www.google.com/search?client=firefox-b-d&q=github+redispy)
+- Memcached: [pymemcache](https://github.com/pinterest/pymemcache)
+- MongoDB: [pymongo](https://github.com/mongodb/mongo-python-driver)
+- Etcd: [etcd3](https://github.com/kragniz/python-etcd3)
+
+The associated wrappers used in the benchmark can be found in [kv_benchmark.py](./kv_benchmark.py)
 
 ## Get
 ![get](./results/benchmark-get.svg)
