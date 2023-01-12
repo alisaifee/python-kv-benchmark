@@ -143,14 +143,13 @@ def mongodb(mongodb_client):
 
 @pytest.fixture
 def etcd(etcd_client):
-    etcd_client.delete_prefix("limits/")
     etcd_client.put(b"fubar", b"1")
     return kv_benchmark.Etcd(etcd_client)
 
 
 @pytest.fixture(scope="session")
 def docker_services_project_name():
-    return "limits"
+    return "python-kv-benchmark"
 
 
 @pytest.fixture(scope="session")
