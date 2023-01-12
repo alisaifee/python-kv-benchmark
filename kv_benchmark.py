@@ -81,17 +81,18 @@ class Etcd(Store):
             return 1
         else:
             cur_value = create_result[1][0][0][0]
-
-            while not self.client.transaction(
-                [self.client.transactions.value(key.encode()) == cur_value],
-                [
-                    self.client.transactions.put(
-                        key.encode(), str(int(cur_value) + 1).encode()
-                    )
-                ],
-                [],
+            while not (
+                update_result := self.client.transaction(
+                    [self.client.transactions.value(key.encode()) == cur_value],
+                    [
+                        self.client.transactions.put(
+                            key.encode(), str(int(cur_value) + 1).encode()
+                        )
+                    ],
+                    [self.client.transactions.get(key.encode())],
+                )
             )[0]:
-                cur_value = create_result[1][0][0][0]
+                cur_value = update_result[1][0][0][0]
 
             return int(cur_value) + 1
 
