@@ -79,6 +79,14 @@ def dragonfly_client(docker_services):
     time.sleep(5)
     return r.StrictRedis("localhost", 10379)
 
+
+@pytest.fixture(scope="session")
+def dragonfly_memcached_client(docker_services):
+    docker_services.start("dragonfly")
+    time.sleep(5)
+    return pymemcache.Client(("localhost", 10211))
+
+
 @pytest.fixture(scope="session")
 def keydb_client(docker_services):
     docker_services.start("keydb")
@@ -130,6 +138,15 @@ def dragonfly(dragonfly_client):
     dragonfly_client.set("fubar", 1)
 
     return kv_benchmark.Redis(dragonfly_client)
+
+
+@pytest.fixture
+def dragonfly_memcached(dragonfly_memcached_client):
+    dragonfly_memcached_client.flush_all()
+    dragonfly_memcached_client.set("fubar", 1)
+
+    return kv_benchmark.Memcached(dragonfly_memcached_client)
+
 
 @pytest.fixture
 def keydb(keydb_client):

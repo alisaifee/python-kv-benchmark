@@ -75,5 +75,8 @@ services:
     image: "docker.dragonflydb.io/dragonflydb/dragonfly:${DRAGONFLY_VERSION:-latest}"
     ports:
       - '10379:6379'
+      - '10211:11211'
+    command:
+     - "--memcache_port=11211"
     ulimits:
       memlock: -1

@@ -34,6 +34,11 @@ all_storage = pytest.mark.parametrize(
             id="dragonfly",
         ),
         pytest.param(
+            pytest.lazy_fixture("dragonfly_memcached"),
+            marks=pytest.mark.dragonfly_memcached,
+            id="dragonfly_memcached",
+        ),
+        pytest.param(
             pytest.lazy_fixture("keydb"),
             marks=pytest.mark.keydb,
             id="keydb",
