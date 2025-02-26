@@ -101,7 +101,7 @@ class Etcd(Store):
 
 
 class Mongo(Store):
-    def __init__(self, client: pymongo.mongo_client.MongoClient, db: str) -> None:
+    def __init__(self, client: pymongo.MongoClient, db: str) -> None:
         self.client = client
         self.collection = self.client.get_database(db).space
 
