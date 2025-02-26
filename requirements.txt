@@ -6,8 +6,7 @@ etcd3
 lovely-pytest-docker
 pytest
 pytest-benchmark[histogram]
-pytest-lazy-fixture
-
+pytest-lazy-fixtures
 
 autoflake8
 black

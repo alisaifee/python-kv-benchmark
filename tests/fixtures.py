@@ -1,40 +1,41 @@
 import pytest
+from pytest_lazy_fixtures import lf
 
 all_storage = pytest.mark.parametrize(
     "fixture",
     [
         pytest.param(
-            pytest.lazy_fixture("redis"),
+            lf("redis"),
             marks=pytest.mark.redis,
             id="redis",
         ),
         pytest.param(
-            pytest.lazy_fixture("memcached"),
+            lf("memcached"),
             marks=pytest.mark.memcached,
             id="memcached",
         ),
         pytest.param(
-            pytest.lazy_fixture("redis_cluster"),
+            lf("redis_cluster"),
             marks=pytest.mark.redis_cluster,
             id="redis-cluster",
         ),
         pytest.param(
-            pytest.lazy_fixture("mongodb"),
+            lf("mongodb"),
             marks=pytest.mark.mongodb,
             id="mongodb",
         ),
         pytest.param(
-            pytest.lazy_fixture("etcd"),
+            lf("etcd"),
             marks=pytest.mark.etcd,
             id="etcd",
         ),
         pytest.param(
-            pytest.lazy_fixture("dragonfly"),
+            lf("dragonfly"),
             marks=pytest.mark.dragonfly,
             id="dragonfly",
         ),
         pytest.param(
-            pytest.lazy_fixture("keydb"),
+            lf("keydb"),
             marks=pytest.mark.keydb,
             id="keydb",
         ),
